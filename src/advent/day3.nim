@@ -7,24 +7,24 @@ import math, sets, sequtils, tables, sugar, strutils
 const priority = toSeq('a'..'z').concat(toSeq('A'..'Z'))
 const priorityLookup = zip(priority, toSeq(1..priority.len)).toTable
 
-func getRucksackTotal(rucksack: string): int =
-    rucksack.toSeq.distribute(2)
-    .map(compartment => compartment.toHashSet)
-    .foldl(a * b)
-    .map((item) => priorityLookup[item])
-    .toSeq
-    .sum
-
 func getPrioritySum(file: string): int =
     file.split("\r\n")
-    .map((rucksack) => getRucksackTotal(rucksack))
+    .map(rucksack => rucksack.toSeq
+        .distribute(2)
+        .map(compartment => compartment.toHashSet)
+        .foldl(a * b)
+        .map(item => priorityLookup[item])
+        .toSeq.sum)
     .sum
 
 func getBadgeSum(lines: seq[string]): int =
-    lines.distribute(lines.len.floorDiv(3))
-    .map(elfGroup => priorityLookup[
-            (toHashSet(elfGroup[0]) * toHashSet(elfGroup[1]) * toHashSet(elfGroup[2])).toSeq[0]
-        ])
+    lines
+    .map(elf => elf.toHashSet)
+    .distribute(lines.len.floorDiv(3))
+    .map(groupElf => groupElf
+        .foldl(a * b)
+        .map(badge => priorityLookup[badge])
+        .toSeq.sum)
     .sum
 
 proc dayThree*(fileName: string) =
