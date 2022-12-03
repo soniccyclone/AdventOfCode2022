@@ -10,6 +10,7 @@ proc getElves(file: string): seq[int] =
             elf = 0
         else:
             elf += line.parseInt()
+    f.close()
 
 proc dayOne*(file: string) =
     var elves = getElves(file)
