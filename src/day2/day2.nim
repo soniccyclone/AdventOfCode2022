@@ -1,4 +1,4 @@
-import std/strutils
+import std/strutils, sugar
 
 proc isTie(opponent, you: string): bool =
     (opponent == "A" and you == "X") or
@@ -16,18 +16,13 @@ proc getScore(opponent, you: string): int =
     elif isVictory(opponent, you):
         result += 6
     
-    if you == "X":
+    case you:
+    of "X":
         result += 1
-    elif you == "Y":
+    of "Y":
         result += 2
-    else:
+    of "Z":
         result += 3
-
-proc getTotalScore(file: File): int =
-    for line in file.lines:
-        let plays = line.split(' ')
-        result += getScore(plays[0], plays[1])
-
 
 proc getPredestinedScore(opponent, outcome: string): int =
     case outcome:
@@ -61,18 +56,18 @@ proc getPredestinedScore(opponent, outcome: string): int =
         of "C":
             result += 1
 
-proc getTotalPredestinedScore(file: File): int =
+proc getTotal(file: File, scorer: (string, string) -> int): int =
     for line in file.lines:
-        var plays = line.split(' ')
-        result += getPredestinedScore(plays[0], plays[1])
+        let plays = line.split(' ')
+        result += scorer(plays[0], plays[1])
 
 proc dayTwo*(fileName: string) =
-    echo "Day 2 Part 1: ", getTotalScore(open(fileName))
-    echo "Day 2 Part 2: ", getTotalPredestinedScore(open(fileName))
+    echo "Day 2 Part 1: ", getTotal(open(fileName), getScore)
+    echo "Day 2 Part 2: ", getTotal(open(fileName), getPredestinedScore)
 
 when isMainModule:
-    assert getTotalScore(open("src/day2/test.in")) == 15
-    assert getTotalScore(open("src/day2/day2.in")) == 10816
-    assert getTotalPredestinedScore(open("src/day2/test.in")) == 12
-    assert getTotalPredestinedScore(open("src/day2/day2.in")) == 11657
+    assert getTotal(open("src/day2/test.in"), getScore) == 15
+    assert getTotal(open("src/day2/day2.in"), getScore) == 10816
+    assert getTotal(open("src/day2/test.in"), getPredestinedScore) == 12
+    assert getTotal(open("src/day2/day2.in"), getPredestinedScore) == 11657
     echo "All tests passed!"
