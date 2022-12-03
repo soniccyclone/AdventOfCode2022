@@ -1,6 +1,7 @@
-import parseutils
+import strutils
+import std/algorithm
 
-let f = open("input")
+let f = open("./src/day1/input")
 
 var elves = newSeq[int]()
 
@@ -11,8 +12,12 @@ for line in f.lines:
         elves.add(elf)
         elf = 0
     else:
-        let food = 0
-        line.parseInt(food)
-        elf += food
+        elf += line.parseInt()
 
-# should just need to return the max of elves
+echo "Part 1: ", max(elves)
+
+elves.sort()
+
+echo "Part 1 but sorted: ", elves[^1]
+
+echo "Part 2: ", elves[^1] + elves[^2] + elves[^3]
