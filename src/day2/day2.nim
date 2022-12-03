@@ -72,5 +72,7 @@ proc dayTwo*(fileName: string) =
 
 when isMainModule:
     assert getTotalScore(open("src/day2/test.in")) == 15
+    assert getTotalScore(open("src/day2/day2.in")) == 10816
     assert getTotalPredestinedScore(open("src/day2/test.in")) == 12
+    assert getTotalPredestinedScore(open("src/day2/day2.in")) == 11657
     echo "All tests passed!"
