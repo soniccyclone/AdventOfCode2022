@@ -36,6 +36,6 @@ proc dayThree*(fileName: string) =
     echo "Day 3 Part 2: ", getBadgeSum(readFile(fileName))
 
 when isMainModule:
-    assert getPrioritySum(readFile("src/day3/test.in")) == 157
-    assert getBadgeSum(readFile("src/day3/test.in")) == 70
+    assert getPrioritySum(readFile("src/input/day3.test")) == 157
+    assert getBadgeSum(readFile("src/input/day3.test")) == 70
     echo "All tests passed!"

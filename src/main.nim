@@ -1,7 +1,5 @@
-import day1/day1,
-    day2/day2,
-    day3/day3
+import advent/[day1, day2, day3]
 
-dayOne("src/day1/day1.in")
-dayTwo("src/day2/day2.in")
-dayThree("src/day3/day3.in")
+dayOne("src/input/day1.in")
+dayTwo("src/input/day2.in")
+dayThree("src/input/day3.in")
