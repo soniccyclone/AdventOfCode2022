@@ -1,11 +1,11 @@
-import math, sets, sequtils, tables, sugar, strutils
+import math, sets, sequtils, tables, sugar, strutils, system/iterators
 
-# const alphabet = toSeq('a'..'z').concat(toSeq('A'..'Z')).enumerate.toTable
-# would be far superior to the next two lines but enumerate requires it be
-# used within a for loop...would also need to mess with indexes more with 
-# that single line solution too I guess ¯\_(ツ)_/¯
-const priority = toSeq('a'..'z').concat(toSeq('A'..'Z'))
-const priorityLookup = zip(priority, toSeq(1..priority.len)).toTable
+const priority = collect:
+  for i, d in toSeq('a'..'z')
+             .concat(toSeq('A'..'Z'))
+             .pairs:
+    (d, i + 1)
+const priorityLookup = priority.toTable
 
 func getPrioritySum(file: string): int =
     file.split("\r\n")
