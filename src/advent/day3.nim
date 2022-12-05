@@ -1,10 +1,10 @@
 import math, sets, sequtils, tables, sugar, strutils, system/iterators
 
 const priority = collect:
-  for i, d in toSeq('a'..'z')
+  for index, letter in toSeq('a'..'z')
              .concat(toSeq('A'..'Z'))
              .pairs:
-    (d, i + 1)
+    (letter, index + 1)
 const priorityLookup = priority.toTable
 
 func getPrioritySum(file: string): int =
