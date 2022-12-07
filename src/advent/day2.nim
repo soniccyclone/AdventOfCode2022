@@ -1,4 +1,4 @@
-import std/strutils, sugar, std/strformat, ../testHelpers
+import std/strutils, sugar, ../testHelpers
 
 func isTie(opponent, you: string): bool =
     (opponent == "A" and you == "X") or

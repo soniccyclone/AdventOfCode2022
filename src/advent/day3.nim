@@ -1,4 +1,4 @@
-import math, sets, sequtils, tables, sugar, strutils, system/iterators, std/strformat, ../testHelpers
+import math, sets, sequtils, tables, sugar, strutils, system/iterators, ../testHelpers
 
 const priority = collect:
   for index, letter in toSeq('a'..'z')

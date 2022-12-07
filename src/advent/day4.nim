@@ -1,4 +1,4 @@
-import sequtils, strutils, system/iterators, std/strformat, ../testHelpers
+import sequtils, strutils, system/iterators, ../testHelpers
 
 func elfBounds(elf: string): tuple[start, finish: int] =
     let bounds = elf.split("-").map(parseInt)

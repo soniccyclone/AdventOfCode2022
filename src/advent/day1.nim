@@ -1,4 +1,4 @@
-import strutils, algorithm, sequtils, sugar, math, std/strformat, ../testHelpers
+import strutils, algorithm, sequtils, sugar, math, ../testHelpers
 
 proc getElves(file: string): seq[int] = 
     var elf = 0
