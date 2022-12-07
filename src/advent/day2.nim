@@ -1,4 +1,4 @@
-import std/strutils, sugar
+import std/strutils, sugar, std/strformat, ../testHelpers
 
 func isTie(opponent, you: string): bool =
     (opponent == "A" and you == "X") or
@@ -66,8 +66,8 @@ proc dayTwo*(fileName: string) =
     echo "Day 2 Part 2: ", getTotal(open(fileName), getPredestinedScore)
 
 when isMainModule:
-    assert getTotal(open("src/input/day2.test"), getScore) == 15
-    assert getTotal(open("src/input/day2.in"), getScore) == 10816
-    assert getTotal(open("src/input/day2.test"), getPredestinedScore) == 12
-    assert getTotal(open("src/input/day2.in"), getPredestinedScore) == 11657
+    assertExpected(15, getTotal(open("src/input/day2.test"), getScore))
+    assertExpected(10816, getTotal(open("src/input/day2.in"), getScore))
+    assertExpected(12, getTotal(open("src/input/day2.test"), getPredestinedScore))
+    assertExpected(11657, getTotal(open("src/input/day2.in"), getPredestinedScore))
     echo "All tests passed!"

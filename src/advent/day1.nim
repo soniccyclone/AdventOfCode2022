@@ -1,4 +1,4 @@
-import strutils, algorithm, sequtils, sugar, math
+import strutils, algorithm, sequtils, sugar, math, std/strformat, ../testHelpers
 
 proc getElves(file: string): seq[int] = 
     var elf = 0
@@ -28,3 +28,11 @@ proc dayOne*(file: string) =
     elves.sort()
     echo "Functional Part 1: ", elves[^1]
     echo "Functional Part 2: ", elves[^1] + elves[^2] + elves[^3]
+
+when isMainModule:
+    let testFile = "src/input/day1.test"
+    var elves = getFunctionalElves(testFile)
+    elves.sort()
+    assertExpected(24000, elves[^1])
+    assertExpected(45000, elves[^1] + elves[^2] + elves[^3])
+    echo "All tests passed!"

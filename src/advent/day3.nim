@@ -1,4 +1,4 @@
-import math, sets, sequtils, tables, sugar, strutils, system/iterators
+import math, sets, sequtils, tables, sugar, strutils, system/iterators, std/strformat, ../testHelpers
 
 const priority = collect:
   for index, letter in toSeq('a'..'z')
@@ -32,6 +32,6 @@ proc dayThree*(fileName: string) =
     echo "Day 3 Part 2: ", getBadgeSum(readFile(fileName).split("\r\n"))
 
 when isMainModule:
-    assert getPrioritySum(readFile("src/input/day3.test")) == 157
-    assert getBadgeSum(readFile("src/input/day3.test").split("\r\n")) == 70
+    assertExpected(157, getPrioritySum(readFile("src/input/day3.test")))
+    assertExpected(70, getBadgeSum(readFile("src/input/day3.test").split("\r\n")))
     echo "All tests passed!"
