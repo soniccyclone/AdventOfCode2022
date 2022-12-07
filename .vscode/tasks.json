@@ -4,13 +4,22 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "build",
             "type": "shell",
-            "command": "nim c -o:bin/main.exe src/main.nim",
+            "command": "nim c -o:bin/test.exe src/test.nim",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
+            }
+        },
+        {
+            "label": "main",
+            "type": "shell",
+            "command": "nim c -o:bin/main.exe src/main.nim",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
             }
         }
     ]
