@@ -1,20 +1,14 @@
 import sequtils, strutils, system/iterators
 
+func elfBounds(elf: string): tuple[start, finish: int] =
+    let bounds = elf.split("-").map(parseInt)
+    (bounds[0], bounds[1])
+
 func isAssignmentContained(elfGroup: string): bool =
-    let elves = elfGroup.split(",")
+    let elves = elfGroup.split(",").map(elfBounds)
 
-    let elf1 = elves[0]
-    let elf2 = elves[1]
-
-    let elf1Bounds = elf1.split("-").map(parseInt)
-    let elf1Start = elf1Bounds[0]
-    let elf1End = elf1Bounds[1]
-
-    let elf2Bounds = elf2.split("-").map(parseInt)
-    let elf2Start = elf2Bounds[0]
-    let elf2End = elf2Bounds[1]
-    
-    (elf1Start <= elf2Start and elf1End >= elf2End) or (elf2Start <= elf1Start and elf2End >= elf1End)
+    (elves[0].start <= elves[1].start and elves[0].finish >= elves[1].finish) or
+    (elves[1].start <= elves[0].start and elves[1].finish >= elves[0].finish)
 
 func sharedUniverses(line: seq[string]): int =
     line.map(isAssignmentContained).filterIt(it).len
