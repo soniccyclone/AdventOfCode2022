@@ -29,10 +29,12 @@ proc dayOne*(file: string) =
     echo "Functional Part 1: ", elves[^1]
     echo "Functional Part 2: ", elves[^1] + elves[^2] + elves[^3]
 
-when isMainModule:
-    let testFile = "src/input/day1.test"
-    var elves = getFunctionalElves(testFile)
+proc testDayOne*(testFilePath: string) =
+    var elves = getFunctionalElves(testFilePath)
     elves.sort()
     assertExpected(24000, elves[^1])
     assertExpected(45000, elves[^1] + elves[^2] + elves[^3])
+
+when isMainModule:
+    testDayOne("src/input/day1.test")
     echo "All tests passed!"

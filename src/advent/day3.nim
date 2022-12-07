@@ -31,7 +31,11 @@ proc dayThree*(fileName: string) =
     echo "Day 3 Part 1: ", getPrioritySum(readFile(fileName))
     echo "Day 3 Part 2: ", getBadgeSum(readFile(fileName).split("\r\n"))
 
+proc testDayThree*(testFilePath: string) =
+    let test = readFile(testFilePath)
+    assertExpected(157, getPrioritySum(test))
+    assertExpected(70, getBadgeSum(test.split("\r\n")))
+
 when isMainModule:
-    assertExpected(157, getPrioritySum(readFile("src/input/day3.test")))
-    assertExpected(70, getBadgeSum(readFile("src/input/day3.test").split("\r\n")))
+    testDayThree("src/input/day3.test")
     echo "All tests passed!"

@@ -26,7 +26,11 @@ proc dayFour*(fileName: string) =
     echo "Day 4 Part 1: ", sharedUniverses(readFile(fileName).split("\r\n"))
     echo "Day 4 Part 2: ", assignmentsOverlapped(readFile(fileName).split("\r\n"))
 
+proc testDayFour*(testFilePath: string) =
+    let test = readFile(testFilePath).split("\r\n")
+    assertExpected(2, sharedUniverses(test))
+    assertExpected(4, assignmentsOverlapped(test))
+
 when isMainModule:
-    assertExpected(2, sharedUniverses(readFile("src/input/day4.test").split("\r\n")))
-    assertExpected(4, assignmentsOverlapped(readFile("src/input/day4.test").split("\r\n")))
+    testDayFour("src/input/day4.test")
     echo "All tests passed!"

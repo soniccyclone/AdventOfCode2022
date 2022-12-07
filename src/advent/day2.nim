@@ -65,9 +65,10 @@ proc dayTwo*(fileName: string) =
     echo "Day 2 Part 1: ", getTotal(open(fileName), getScore)
     echo "Day 2 Part 2: ", getTotal(open(fileName), getPredestinedScore)
 
+proc testDayTwo*(testFilePath: string) =
+    assertExpected(15, getTotal(open(testFilePath), getScore))
+    assertExpected(12, getTotal(open(testFilePath), getPredestinedScore))
+
 when isMainModule:
-    assertExpected(15, getTotal(open("src/input/day2.test"), getScore))
-    assertExpected(10816, getTotal(open("src/input/day2.in"), getScore))
-    assertExpected(12, getTotal(open("src/input/day2.test"), getPredestinedScore))
-    assertExpected(11657, getTotal(open("src/input/day2.in"), getPredestinedScore))
+    testDayTwo("src/input/day2.test")
     echo "All tests passed!"
