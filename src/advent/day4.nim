@@ -10,8 +10,8 @@ func isAssignmentContained(elfGroup: string): bool =
     (elves[0].start <= elves[1].start and elves[0].finish >= elves[1].finish) or
     (elves[1].start <= elves[0].start and elves[1].finish >= elves[0].finish)
 
-func sharedUniverses(line: seq[string]): int =
-    line.map(isAssignmentContained).filterIt(it).len
+func sharedUniverses(lines: seq[string]): int =
+    lines.map(isAssignmentContained).filterIt(it).len
 
 func isOverlapped(elfGroup: string): bool =
     let elves = elfGroup.split(",").map(elfBounds)
